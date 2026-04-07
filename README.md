@@ -87,6 +87,22 @@ The simplest variant. The stepper advances automatically every 500 ms (`STEP_DEL
 
 Designed for synchronization with a camera or other acquisition hardware. The LED advances only when an external trigger pulse is received on `TRIG_PIN` (GPIO 35).
 
+### Voltage level shifting
+
+The ESP32 GPIOs are 3.3 V and **not 5 V tolerant**. If the trigger source outputs 5 V logic (e.g. a camera or function generator), a resistor voltage divider is needed to step the signal down to a safe level for GPIO 35. For example, a 10 k / 20 k divider gives:
+
+```
+5 V ──┬── 10 kΩ ──┬── GPIO 35
+      │            │
+      └            20 kΩ
+                   │
+                  GND
+```
+
+V_out = 5 V x 20 k / (10 k + 20 k) = 3.3 V
+
+GPIO 35 is input-only on the ESP32 and has no internal pull resistor, so the divider also provides a defined idle state.
+
 ### Trigger mechanism
 
 The trigger system uses an interrupt-driven approach with debouncing and re-arm logic to ensure reliable one-shot-per-pulse behavior:
