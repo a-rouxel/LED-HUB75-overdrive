@@ -59,6 +59,10 @@ The panel is a [Waveshare RGB-Matrix-P2-64x64](https://www.waveshare.com/wiki/RG
 
 ![Panel back with HUB75E connectors and power input](imgs/RGB-Matrix-P2-64x64.png)
 
+The controller is an ESP32 dev module:
+
+![ESP32 dev module](imgs/ESP_32_devmodule.jpg)
+
 The 16-pin ribbon cable pinout and corresponding HUB75 input header:
 
 ![16-pin cable definition and HUB75 input pinout](imgs/16PIN-cable.jpg)
